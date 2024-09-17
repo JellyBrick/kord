@@ -325,3 +325,8 @@ public fun Optional<Boolean>.toPrimitive(): OptionalBoolean = when (this) {
     is Value -> OptionalBoolean.Value(value)
     is Missing, is Null<*> -> OptionalBoolean.Missing
 }
+
+public fun <T> Optional<List<T>>.missingOnEmpty(): Optional<List<T>> = when (this) {
+    is Value -> if (value.isEmpty()) Missing() else this
+    is Missing, is Null<*> -> Missing()
+}

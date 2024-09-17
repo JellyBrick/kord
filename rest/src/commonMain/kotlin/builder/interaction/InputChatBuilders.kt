@@ -9,6 +9,7 @@ import dev.kord.common.entity.Permissions
 import dev.kord.common.entity.optional.Optional
 import dev.kord.common.entity.optional.delegate.delegate
 import dev.kord.common.entity.optional.mapList
+import dev.kord.common.entity.optional.missingOnEmpty
 import dev.kord.rest.json.request.ApplicationCommandCreateRequest
 import dev.kord.rest.json.request.ApplicationCommandModifyRequest
 import kotlin.contracts.InvocationKind
@@ -171,8 +172,8 @@ internal class ChatInputCreateBuilderImpl(
             state.defaultMemberPermissions,
             state.dmPermission,
             @Suppress("DEPRECATION") state.defaultPermission,
-            integrationTypes = Optional.missingOnEmpty(state.integrationTypes),
-            contexts = missingOnEmpty(state.contexts),
+            integrationTypes = state.integrationTypes.missingOnEmpty(),
+            contexts = state.contexts.missingOnEmpty(),
             nsfw = state.nsfw,
         )
 

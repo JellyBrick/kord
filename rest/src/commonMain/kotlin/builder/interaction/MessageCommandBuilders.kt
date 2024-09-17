@@ -7,6 +7,7 @@ import dev.kord.common.entity.ApplicationIntegrationType
 import dev.kord.common.entity.InteractionContextType
 import dev.kord.common.entity.Permissions
 import dev.kord.common.entity.optional.delegate.delegate
+import dev.kord.common.entity.optional.missingOnEmpty
 import dev.kord.rest.json.request.ApplicationCommandCreateRequest
 import dev.kord.rest.json.request.ApplicationCommandModifyRequest
 
@@ -86,8 +87,8 @@ internal class MessageCommandCreateBuilderImpl(override var name: String) : Glob
             dmPermission = state.dmPermission,
             defaultMemberPermissions = state.defaultMemberPermissions,
             defaultPermission = @Suppress("DEPRECATION") state.defaultPermission,
-            integrationTypes = state.integrationTypes,
-            contexts = state.contexts,
+            integrationTypes = state.integrationTypes.missingOnEmpty(),
+            contexts = state.contexts.missingOnEmpty(),
             nsfw = state.nsfw,
         )
     }
