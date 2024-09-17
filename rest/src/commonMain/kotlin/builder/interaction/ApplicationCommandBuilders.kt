@@ -69,6 +69,23 @@ public interface ApplicationCommandModifyBuilder : LocalizedNameModifyBuilder,
     @Deprecated("'defaultPermission' is deprecated in favor of 'defaultMemberPermissions' and 'dmPermission'. Setting 'defaultPermission' to false can be replaced by setting 'defaultMemberPermissions' to empty Permissions and 'dmPermission' to false ('dmPermission' is only available for global commands).")
     public var defaultPermission: Boolean?
 
+    public var integrationTypes: MutableList<ApplicationIntegrationType>?
+    public var contexts: MutableList<InteractionContextType>?
+
     /** Indicates whether the command is age-restricted. */
     public var nsfw: Boolean?
+
+    /**
+     * Requires this command to be executed in a specific [installation context][ApplicationIntegrationType].
+     */
+    public fun requireIntegrationTypes(vararg types: ApplicationIntegrationType) {
+        integrationTypes?.addAll(types) ?: run { integrationTypes = types.toMutableList() }
+    }
+
+    /**
+     * Requires this command to be executed in a specific [interaction context][InteractionContextType].
+     */
+    public fun requireContext(vararg types: InteractionContextType) {
+        contexts?.addAll(types) ?: run { contexts = types.toMutableList() }
+    }
 }

@@ -27,7 +27,8 @@ internal class UserCommandModifyBuilderImpl : GlobalUserCommandModifyBuilder {
     override var defaultMemberPermissions: Permissions? by state::defaultMemberPermissions.delegate()
     @Suppress("OVERRIDE_DEPRECATION")
     override var dmPermission: Boolean? by state::dmPermission.delegate()
-
+    override var integrationTypes: MutableList<ApplicationIntegrationType>? by state::integrationTypes.delegate()
+    override var contexts: MutableList<InteractionContextType>? by state::contexts.delegate()
     @Deprecated("'defaultPermission' is deprecated in favor of 'defaultMemberPermissions' and 'dmPermission'. Setting 'defaultPermission' to false can be replaced by setting 'defaultMemberPermissions' to empty Permissions and 'dmPermission' to false ('dmPermission' is only available for global commands).")
     override var defaultPermission: Boolean? by @Suppress("DEPRECATION") state::defaultPermission.delegate()
 
@@ -40,6 +41,8 @@ internal class UserCommandModifyBuilderImpl : GlobalUserCommandModifyBuilder {
             dmPermission = state.dmPermission,
             defaultMemberPermissions = state.defaultMemberPermissions,
             defaultPermission = @Suppress("DEPRECATION") state.defaultPermission,
+            integrationTypes = state.integrationTypes,
+            contexts = state.contexts,
             nsfw = state.nsfw,
         )
     }
@@ -78,6 +81,8 @@ internal class UserCommandCreateBuilderImpl(override var name: String) : GlobalU
             defaultMemberPermissions = state.defaultMemberPermissions,
             dmPermission = state.dmPermission,
             defaultPermission = @Suppress("DEPRECATION") state.defaultPermission,
+            integrationTypes = state.integrationTypes,
+            contexts = state.contexts,
             nsfw = state.nsfw,
         )
     }

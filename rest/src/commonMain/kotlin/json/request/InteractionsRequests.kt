@@ -25,6 +25,9 @@ public data class ApplicationCommandCreateRequest(
     @Deprecated("'defaultPermission' is deprecated in favor of 'defaultMemberPermissions' and 'dmPermission'. Setting 'defaultPermission' to false can be replaced by setting 'defaultMemberPermissions' to empty Permissions and 'dmPermission' to false ('dmPermission' is only available for global commands).")
     @SerialName("default_permission")
     val defaultPermission: OptionalBoolean = OptionalBoolean.Missing,
+    @SerialName("integration_types")
+    val integrationTypes: Optional<List<ApplicationIntegrationType>> = Optional.Missing(),
+    val contexts: Optional<List<InteractionContextType>?> = Optional.Missing(),
     val nsfw: OptionalBoolean = OptionalBoolean.Missing,
 )
 
@@ -44,6 +47,9 @@ public data class ApplicationCommandModifyRequest(
     @Deprecated("'defaultPermission' is deprecated in favor of 'defaultMemberPermissions' and 'dmPermission'. Setting 'defaultPermission' to false can be replaced by setting 'defaultMemberPermissions' to empty Permissions and 'dmPermission' to false ('dmPermission' is only available for global commands).")
     @SerialName("default_permission")
     val defaultPermission: OptionalBoolean = OptionalBoolean.Missing,
+    @SerialName("integration_types")
+    val integrationTypes: Optional<List<ApplicationIntegrationType>> = Optional.Missing(),
+    val contexts: Optional<List<InteractionContextType>?> = Optional.Missing(),
     val nsfw: OptionalBoolean = OptionalBoolean.Missing,
 )
 
